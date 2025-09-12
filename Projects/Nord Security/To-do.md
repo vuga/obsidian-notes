@@ -1,0 +1,2 @@
+- [ ] Review Dovydas task
+- [ ] Ask Akvilė for URLs to test the automatic feed review logic
