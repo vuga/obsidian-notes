@@ -1,1 +1,2 @@
-- [ ] example task
+- [ ] Buy disposable camera for Andreja
+- [ ] Buy return plane tickets from Corfu
