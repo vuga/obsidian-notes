@@ -6,4 +6,4 @@
 - [ ] Specify version 1 and version 2, separating malware into ver. 2
 - [ ] Specify how the report and the review doc should look like
 - [x] Check if https://adblock.turtlecute.org/ is suitable for checking adblock ✅ 2025-09-15
-- [ ] Get % of ads that need to be blocked
+- [x] Get % of ads that need to be blocked ✅ 2025-09-15
