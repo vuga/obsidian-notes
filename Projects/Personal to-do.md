@@ -1,3 +1,5 @@
+## Done
+## In progress
 - [ ] Buy disposable camera for Andreja
 - [ ] Buy return plane tickets from Corfu
 - [ ] Get a house for Corfu
