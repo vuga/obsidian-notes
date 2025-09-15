@@ -5,3 +5,4 @@
 - [ ] Action plan for automatic feed review doc
 - [ ] Specify version 1 and version 2, separating malware into ver. 2
 - [ ] Specify how the report and the review doc should look like
+- [ ] Check if https://adblock.turtlecute.org/ is suitable for checking adblock
