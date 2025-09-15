@@ -1,6 +1,6 @@
 ## Done
 ## In progress
-- [ ] Buy disposable camera for Andreja
+- [x] Buy disposable camera for Andreja ✅ 2025-09-15
 - [ ] Buy return plane tickets from Corfu
 - [ ] Get a house for Corfu
 - [ ] Get a house for Agadir
