@@ -10,4 +10,4 @@
 ## In progress
 - [ ] Fill Q4 Idea Submission form provided by Artur
 - [ ] Test automatic feed review logic with URLs from Akvilė
-- [ ] Retrieve Cyber challenge prize
+- [x] Retrieve Cyber challenge prize ✅ 2025-09-17
