@@ -206,7 +206,7 @@ async def process_all_urls(data, model_id):
 
 
 ## FP review script
-1/1 wetransfer phishing
+1/1 WeTransfer phishing
 2/2 now white page, but seems like hosted phishing
 2/3 did not catch parked domain
 3/4 clean parked domain
