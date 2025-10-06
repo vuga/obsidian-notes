@@ -219,6 +219,10 @@ async def process_all_urls(data, model_id):
 9/11 Marked parked domain as unsure (https://www.rv-camper-motorhomes-43516.bond/?KW1=RV+Parks&KW2=RV+For+Sale&KW3=RV+Rental&KW4=RV+Parks+Near+Me&KW5=RV+Dealers+Near+Me&KW6=RV+Sales+Near+Me&autotest=1&backfill=0&domainname=0&lrt=1&lrt=1&offer=RV%2C+Camper+&searchbox=0&subid1=3e88b5eff6536f03599069d862f83212gd300e6e430accf67e89ad5dd1e152e6&theme=MoniPlus&track_id=3e88b5eff6536f03599069d862f83212gd300e6e430accf67e89ad5dd1e152e6&vertical=Autos+)
 10/12 caught down website with text "website disabled"
 11/13 Caught phishing
+12/14 Caught phishing after adjusting prompt
+12/15 marked live website as down because the HTML extraction failed (https://my.ydoher.info/sign-up/kwfNsD4TBgCfAWUNcG8XVQHhpoL28JJDypbEEt8rEffHnlTU9DeboIKsCHPQy27Z](https://my.ydoher.info/sign-up/kwfNsD4TBgCfAWUNcG8XVQHhpoL28JJDypbEEt8rEffHnlTU9DeboIKsCHPQy27Z))
+13/16 Correctly caught quite obscure phishing case
+
 
 
 
