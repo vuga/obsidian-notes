@@ -8,6 +8,6 @@
 - [x] Check if https://adblock.turtlecute.org/ is suitable for checking adblock ✅ 2025-09-15
 - [x] Get % of ads that need to be blocked ✅ 2025-09-15
 ## In progress
-- [ ] Fill Q4 Idea Submission form provided by Artur
+- [x] Fill Q4 Idea Submission form provided by Artur ✅ 2025-10-06
 - [ ] Test automatic feed review logic with URLs from Akvilė
 - [x] Retrieve Cyber challenge prize ✅ 2025-09-17
