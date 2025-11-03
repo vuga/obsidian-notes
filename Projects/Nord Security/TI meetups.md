@@ -14,3 +14,4 @@ This week:
 - Meetings with PY and DS regarding Unified FP report and Automatic feed FP report
 - Alignment on newly registered domains
 - Collect clean files from legacy Windows versions (7 & Vista)
+To ask if we have any server to run a script
