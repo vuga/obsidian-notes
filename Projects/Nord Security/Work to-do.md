@@ -7,7 +7,11 @@
 - [x] Specify how the report and the review doc should look like ✅ 2025-09-15
 - [x] Check if https://adblock.turtlecute.org/ is suitable for checking adblock ✅ 2025-09-15
 - [x] Get % of ads that need to be blocked ✅ 2025-09-15
+- [x] Fill Q4 Idea Submission form provided by Artur ✅ 2025-11-03
+- [x] Test automatic feed review logic with URLs from Akvilė ✅ 2025-11-03
+- [x] Retrieve Cyber challenge prize ✅ 2025-11-03
 ## In progress
-- [x] Fill Q4 Idea Submission form provided by Artur ✅ 2025-10-06
-- [ ] Test automatic feed review logic with URLs from Akvilė
-- [x] Retrieve Cyber challenge prize ✅ 2025-09-17
+
+- [ ] Create a meeting with PY (Dima) and DS team (Goda and Akvile) for automated feed review process
+- [ ] Collect clean files from legacy Windows versions (7 & Vista)
+- [ ] Create a meeting with PY (Dima and Valdemaras) for Unified FP report

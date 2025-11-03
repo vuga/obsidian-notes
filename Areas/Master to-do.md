@@ -1,4 +1,4 @@
-## Work
-![[Work to-do]]
+## Work 
+![[Work to-do]] 
 ## Personal
 ![[Personal to-do]]
