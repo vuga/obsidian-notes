@@ -137,3 +137,10 @@ Almost ~20% are fake shops, seems like we need to double-check our internal Fake
 Define labels, double-check and make sure the logic makes sense
 To ask akvile if we can query if a domain was sent to DRS automatically within a longer time range
 Check if BBB has an API that could be used by us for a legitimacy check
+Add hits calculation to FP/FNs
+In Domain Curator, if we see a link shortener, we should check the final URL and, if possible, pay more attention to it. Mark the whole redirect chain with the final reputation.
+To ask if we can query ScamML metadata about a domain.
+Email blacklist as an indicator.
+One platform to call all metadata from our internal services.
+Traces for our domains that would store metadata from our internal services.
+We should store cases that were unblocked during the review.
