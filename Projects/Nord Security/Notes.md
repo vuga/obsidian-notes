@@ -132,3 +132,8 @@ Actionable detection improvements
 3 new brands - Fiverr, Nequi, Clash royale
 Implement Newly registered domain ingestion as at least 8 cases mention young domain age, only 2 of those were ingested and marked as clean by Avira.
 Almost ~20% are fake shops, seems like we need to double-check our internal Fake Shop ML. Mentioned indicators - steep discounts, fake images, single/absent payment methods, Outlook contact, same price for all products.
+
+## Meeting notes
+Define labels, double-check and make sure the logic makes sense
+To ask akvile if we can query if a domain was sent to DRS automatically within a longer time range
+Check if BBB has an API that could be used by us for a legitimacy check
