@@ -12,7 +12,9 @@
 - [x] Retrieve Cyber challenge prize ✅ 2025-11-03
 - [x] Collect clean files from legacy Windows versions (7 & Vista) ✅ 2025-11-19
 - [x] Create a meeting with PY (Dima and Valdemaras) for Unified FP report ✅ 2025-11-19
+- [x] Create a meeting with PY (Dima) and DS team (Goda and Akvile) for automated feed review process ✅ 2025-11-19
 ## In progress
 
-- [x] Create a meeting with PY (Dima) and DS team (Goda and Akvile) for automated feed review process ✅ 2025-11-19
+
 - [ ] Update unified FP report doc regarding web ui implementation in version 1
+- [ ] Whitelist improvements brainstorming
