@@ -2,6 +2,9 @@
 
 ## How to add additional domains to whitelist
 
+Found eurovision.tv with new flow.
+![[Pasted image 20251215165622.png]]
+![[Pasted image 20251215165713.png]]
 # General notes
 Even new popular services should not be hosted on very new domains, so having a 1 month filter for the whitelist makes sense.
 Deepseek.com was registered on 2000-08-13.
