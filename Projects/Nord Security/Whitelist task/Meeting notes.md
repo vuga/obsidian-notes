@@ -1,0 +1,1 @@
+During the meeting mention [[https://nordsec.slack.com/archives/C08K0ACFH8V/p1768557839964059]] and say that after implementing the whitelist changes, we should run our whole whitelist against VirusTotal as it seems like there are quite a few cases where domains with many detections are whitelisted.
