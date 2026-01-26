@@ -189,10 +189,10 @@ To avoid "Reinventing the wheel" during the PoC phase, we will use established l
 **Goal:** Distinguish between a " Victim" (Legit Brand), an "Attacker" (Phish), and a "Bystander" (Random blog).
 
 For every URL returned by Yandex:
-1.  **Whitelist Check:** Is the domain in `Tranco Top 1 Million`?
+1.  **Whitelist Check:** Is the domain in our whitelist?
     *   *Yes* → Mark as **LEGIT** (e.g., `amazon.com`).
     *   *No* → Proceed.
-2.  **Blocklist Check:** Is the domain in our `Known_Bad_DB`?
+2.  **Blocklist Check:** Is the domain blocked via our reputation API?
     *   *Yes* → Mark as **KNOWN** (Ignore).
     *   *No* → Proceed.
 3.  **Domain Age Check (The Tie-Breaker):**
