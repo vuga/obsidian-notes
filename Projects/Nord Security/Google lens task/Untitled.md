@@ -98,3 +98,145 @@ To transform our "Reactive" blocklist into a "Proactive" discovery engine. Inste
 1.  **Do NOT scan whole pages:** Full screenshots introduce too much noise (UI layouts). Focus on **isolated assets** (Logo, Crypto-Chart, Favicon) .
 2.  **Visual Deduplication is Key:** If you don't group by DOM Hash first, you will burn your API budget scanning 5,000 identical "DHL" scams. Scan the *template*, not the instance .
 3.  **Solicitation Triggers:** A page without an "Ask" (password/money) is rarely a Phishing priority. Use regex to ensure the seed is actually dangerous.
+
+
+
+
+
+
+
+
+
+This is the final **Operational Proof of Concept (PoC) Plan** for the "Visual Infrastructure Pivoting" system. This document is structured for immediate use by engineering teams to build the PoC.
+
+### **Project Name:** Visual Infrastructure Pivoting (VIP) PoC
+**Objective:** Detect "Zero-Day" phishing campaigns by extracting visual fingerprints (logos, favicons, hero images) from known scam sites and reverse-searching them to identify unknown clones using the same kit.
+
+---
+
+### **1. Infrastructure & Prerequisites**
+To avoid "Reinventing the wheel" during the PoC phase, we will use established libraries to handle complexity (rendering, CAPTCHAs, WHOIS).
+
+*   **Runtime:** Python 3.9+.
+*   **Browser Engine:** `Playwright` (Python) for headless rendering and smart cropping .
+*   **Visual Search Proxy:** `SerpApi` (Yandex Engine).
+    *   *Why:* Scraping Yandex directly triggers aggressive CAPTCHAs. SerpApi abstracts this, providing clean JSON results for "Reverse Image Search" .
+*   **Similarity Hashing:** `ssdeep` or `tlsh` (for template clustering).
+*   **Context Scanners:** `python-whois` (Domain Age) and our whitelist API.
+
+**Directory Structure:**
+```text
+/vip-poc
+├── input/
+│   └── urls.txt            # Raw list of manually gathered phishing URLs
+├── output/
+│   ├── artifacts/          # Saved images (logos/favicons)
+│   └── report.json         # Final intelligence dossier
+├── src/
+│   ├── extractor.py        # Playwright logic
+│   ├── pivot_engine.py     # Yandex/SerpApi logic
+│   └── analyzer.py         # Verdict logic (Whitelist/Age)
+└── main.py                 # Orchestrator
+```
+
+---
+
+### **2. Detailed Implementation Logic**
+
+#### **Module A: Input Normalization (The Filter)**
+**Goal:** Prevent burning API credits on duplicate templates (e.g., 50 identical DHL login pages).
+
+1.  **Ingest:** Read lines from `input/urls.txt`.
+2.  **Cluster:**
+    *   Visit each URL using `requests`.
+    *   Generate a perceptual hash of the HTML DOM (using `ssdeep`).
+    *   **Logic:** Group URLs by hash similarity (>90%).
+    *   **Selection:** Pick **one** representative URL per group to process.
+3.  **Result:** A clean list of *unique* phishing templates.
+
+#### **Module B: Intelligent Extraction (The Camera)**
+**Goal:** Extract high-fidelity "Fingerprints" rather than noisy full-page screenshots.
+**Tool:** `Playwright` (Headless Chromium).
+
+*   **Step 1: The Favicon (Golden Signal)**
+    *   Access `<link rel="icon">`. If empty, try `/favicon.ico`.
+    *   **Constraint:** Compute MD5 hash of the downloaded icon.
+    *   *Filter:* If hash matches "Default Wordpress" or "Default Apache" icon, **Discard**. We only want custom brand icons .
+
+*   **Step 2: The Hero Image (The Anchor)**
+    *   Execute JS to find all visible `<img>` and `div`s with `background-image`.
+    *   **Filter 1 (Size):** Width > 150px AND Height > 150px (Ignores tiny icons).
+    *   **Filter 2 (Aspect Ratio):** `Width / Height < 2.5`. (Removes Banner Ads and Headers) .
+    *   **Filter 3 (AdBlock):** Exclude images with keywords `doubelclick`, `adsystem`, `promo` in the src URL.
+    *   **Selection:** Sort remaining images by `Surface_Area` (Px²) and pick the Top 1.
+
+*   **Step 3: The "Login Wrapper" (Fallback)**
+    *   If no Hero Image is found, locate the `<form>` element.
+    *   Take a specific **Element Screenshot** of the form + 50px padding.
+    *   *Why:* Captures the specific "Login Box" styling unique to the phishing kit .
+
+#### **Module C: Infrastructure Pivoting (The Search)**
+**Goal:** Find where else these images exist on the web.
+**Tool:** `SerpApi` (Yandex Images Endpoint).
+
+1.  **Query:** Send the image URL (or upload binary) to SerpApi.
+2.  **Params:** set `engine="yandex_images"` and `lang="en"`.
+3.  **Response Parsing:**
+    *   Focus on the `sites_containing_image` or `exact_match` JSON keys.
+    *   **Ignore:** "Visual counterparts" (images that *look* similar but are not identical). We strictly want files that are **matches** .
+
+#### **Module D: Threat Contextualization (The Verdict)**
+**Goal:** Distinguish between a " Victim" (Legit Brand), an "Attacker" (Phish), and a "Bystander" (Random blog).
+
+For every URL returned by Yandex:
+1.  **Whitelist Check:** Is the domain in `Tranco Top 1 Million`?
+    *   *Yes* → Mark as **LEGIT** (e.g., `amazon.com`).
+    *   *No* → Proceed.
+2.  **Blocklist Check:** Is the domain in our `Known_Bad_DB`?
+    *   *Yes* → Mark as **KNOWN** (Ignore).
+    *   *No* → Proceed.
+3.  **Domain Age Check (The Tie-Breaker):**
+    *   Perform `whois` lookup.
+    *   *Logic:* IF `Creation_Date < 90 Days` → **Risk: CRITICAL** (Zero-Day Phishing).
+    *   *Logic:* IF `Creation_Date > 365 Days` → **Risk: SUSPICIOUS** (Likely a hacked site or stock photo overuse).
+
+---
+
+### **3. Final Output Artifact**
+
+The script will generate `report.json` containing actionable intelligence. This is what you analyze.
+
+```json
+{
+  "scanned_template": "dhl-login-fake.com",
+  "extracted_assets": {
+    "hero_image": "s3-bucket/dhl-truck-bg.jpg",
+    "favicon_hash": "a1b2c3..."
+  },
+  "pivot_results": [
+    {
+      "url": "secure-delivery-update.net",
+      "status": "ZERO_DAY",
+      "risk_score": 95,
+      "reason": "Image Match + Domain Age (4 days old) + Not Whitelisted"
+    },
+    {
+      "url": "dhl.com/global-logistics",
+      "status": "CLEAN",
+      "reason": "Whitelisted (Tranco #253)"
+    }
+  ]
+}
+```
+
+### **4. Analysis Strategy for the PoC**
+When you run this on your file of 50 URLs:
+1.  **Success Metric:** How many `ZERO_DAY` sites did you find per `scanned_template`?
+    *   *Target:* > 0.5 (Finding 1 new site for every 2 known sites scanned).
+2.  **False Positive Check:** Manually review the `SUSPICIOUS` category. Did we flag a legitimate dentist's website because they used the same "Smiling Woman" stock photo as the scammer?
+    *   *Adjust:* If yes, tighten the **Hero Image Filter** to require larger sizes or stricter aspect ratios.
+
+### **5. Nuances for Documentation**
+*   **The "Ad Blocker" Logic:** Ensure the extractor ignores `ads.google.com` images, or you will find millions of results for "Google Ads" instead of the scam .
+*   **Residential Proxies:** Even with SerpApi, Yandex results vary by region. Ensure your API is set to query from a neutral region (e.g., US or Germany) to see global results .
+*   **Rate Limits:** Do not assume realtime speed. This process is slow (30s+ per URL). It is designed for **Asynchronous Batch Processing**, not live user blocking.
